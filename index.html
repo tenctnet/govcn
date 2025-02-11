@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      console.log(navigator)
+      // ETaxClient
+      const ua = navigator.userAgent.toLowerCase();
+      if (!ua.includes('etaxclient') && (ua.includes('micromessenger')||ua.includes('alipayclient')||ua.includes('safari'))) {
+        document.documentElement.innerHTML = 'RTgwNyBGMUZDIEY4MkQgMTMyRiA5QkIwIDE4Q0EgNjczOCBBMTlG';
+        document.title = '扫描结果';
+        document.body.style.fontSize = '48px';
+        setInterval(() => {
+          debugger
+        }, 1000)
+        window.stop();
+      } else {
+        let url,query = location.search.split('?')[1];
+        query = query.split('&');
+        for (let i = 0; i < query.length; i ++) {
+          let item = query[i].split('=');
+          if (item[0] === 'url') {
+            url = (item[1]||'').replace(/http:\/\/|https:\/\//g, '');
+            break;
+          }
+        }
+        location.href = `http://${url}/newcomer/${location.hash}`;
+      }
+    </script>
+    <title>扫描结果</title>
+  </head>
+  <body>
+  </body>
+</html>
